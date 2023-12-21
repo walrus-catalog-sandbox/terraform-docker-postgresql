@@ -1,3 +1,0 @@
-locals {
-  message = var.message
-}

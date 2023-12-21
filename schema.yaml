@@ -5,26 +5,14 @@ components:
   schemas:
     variables:
       type: object
+      required:
+      - infrastructure
       properties:
         context:
           title: Context
           type: object
           description: |
             Receive contextual information. When Walrus deploys, Walrus will inject specific contextual information into this field.
-
-            Examples:
-            ```
-            context:
-              project:
-                name: string
-                id: string
-              environment:
-                name: string
-                id: string
-              resource:
-                name: string
-                id: string
-            ```
           default: {}
           nullable: true
           additionalProperties:
@@ -36,6 +24,201 @@ components:
             group: Basic
             hidden: true
             order: 1
+        infrastructure:
+          title: Infrastructure
+          type: object
+          description: |
+            Specify the infrastructure information for deploying.
+          required:
+          - network_id
+          properties:
+            domain_suffix:
+              default: cluster.local
+              description: |
+                Specify the domain name for discovering the service.
+              nullable: true
+              title: Domain Suffix
+              type: string
+              x-walrus-ui:
+                order: 2
+            network_id:
+              description: |
+                Specify the ID of the Docker network where the service applies.
+              title: Network Id
+              type: string
+              x-walrus-ui:
+                order: 1
+          x-walrus-ui:
+            colSpan: 12
+            group: Basic
+            order: 2
+        architecture:
+          title: Architecture
+          type: string
+          description: |
+            Specify the deployment architecture, select from standalone or replication.
+          default: standalone
+          enum:
+          - standalone
+          - replication
+          nullable: true
+          x-walrus-ui:
+            group: Basic
+            order: 3
+        replication_readonly_replicas:
+          title: Replication Readonly Replicas
+          type: number
+          description: |
+            Specify the number of read-only replicas under the replication deployment.
+          default: 1
+          enum:
+          - 1
+          - 3
+          - 5
+          nullable: true
+          x-walrus-ui:
+            group: Basic
+            order: 4
+            showIf: architecture=replication
+        engine_version:
+          title: Engine Version
+          type: string
+          description: |
+            Specify the deployment engine version, select from https://hub.docker.com/r/bitnami/postgresql/tags.
+          default: "16"
+          nullable: true
+          x-walrus-ui:
+            group: Basic
+            order: 5
+        database:
+          title: Database
+          type: string
+          description: |
+            Specify the database name. The database name must be 2-64 characters long and start with any lower letter, combined with number, or symbols: - _.
+            The database name cannot be PostgreSQL forbidden keyword.
+          default: mydb
+          nullable: true
+          x-walrus-ui:
+            group: Basic
+            order: 6
+        username:
+          title: Username
+          type: string
+          description: |
+            Specify the account username. The username must be 2-16 characters long and start with lower letter, combined with number, or symbol: _.
+            The username cannot be PostgreSQL forbidden keyword and root.
+            See https://www.alibabacloud.com/help/en/rds/developer-reference/api-rds-2014-08-15-createaccount.
+          default: rdsuser
+          nullable: true
+          x-walrus-ui:
+            group: Basic
+            order: 7
+        password:
+          title: Password
+          type: string
+          description: |
+            Specify the account password. The password must be 8-32 characters long and start with any letter, number, or symbols: ! # $ % ^ & * ( ) _ + - =.
+            If not specified, it will use the first 16 characters of the username md5 hash value.
+          format: password
+          nullable: true
+          writeOnly: true
+          x-walrus-ui:
+            group: Basic
+            order: 8
+        resources:
+          title: Resources
+          type: object
+          description: |
+            Specify the computing resources.
+          nullable: true
+          properties:
+            cpu:
+              default: 0.25
+              description: |
+                Specify the CPU core number. Unit is core.
+              nullable: true
+              title: Cpu
+              type: number
+              x-walrus-ui:
+                order: 1
+            memory:
+              default: 1024
+              description: |
+                Specify the memory size. Unit is megabyte.
+              nullable: true
+              title: Memory
+              type: number
+              x-walrus-ui:
+                order: 2
+          x-walrus-ui:
+            colSpan: 12
+            group: Basic
+            order: 9
+        seeding:
+          title: Seeding
+          type: object
+          description: Specify the configuration to seed the database at first-time
+            creating. Seeding increases the startup time waiting and also needs proper
+            permission, like root account.
+          nullable: true
+          properties:
+            text:
+              description: |
+                Configure database seeding from text.
+              nullable: true
+              properties:
+                content:
+                  description: |
+                    Specify the SQL statements to seed the database.
+                  title: Content
+                  type: string
+                  x-walrus-ui:
+                    order: 1
+              required:
+              - content
+              title: Text
+              type: object
+              x-walrus-ui:
+                colSpan: 12
+                order: 3
+                showIf: type=text
+            type:
+              default: none
+              description: |
+                Specify the seeding approach, select from none, url or text.
+              enum:
+              - none
+              - url
+              - text
+              nullable: true
+              title: Type
+              type: string
+              x-walrus-ui:
+                order: 1
+            url:
+              description: |
+                Configure database seeding from url.
+              nullable: true
+              properties:
+                location:
+                  description: |
+                    Specify the URL to download the SQL statements.
+                  title: Location
+                  type: string
+                  x-walrus-ui:
+                    order: 1
+              required:
+              - location
+              title: Url
+              type: object
+              x-walrus-ui:
+                colSpan: 12
+                order: 2
+                showIf: type=url
+          x-walrus-ui:
+            colSpan: 12
+            group: Basic
+            order: 8
       x-walrus-ui:
         groupOrder:
         - Basic
