@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: OpenAPI schema for template submodule
+components:
+  schemas:
+    variables:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          title: Message
+          type: string
+          description: The input message.
+          x-walrus-ui:
+            group: Basic
+            order: 1
+      x-walrus-ui:
+        groupOrder:
+        - Basic

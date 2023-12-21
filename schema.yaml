@@ -1,0 +1,41 @@
+openapi: 3.0.3
+info:
+  title: OpenAPI schema for template walrus-template-template
+components:
+  schemas:
+    variables:
+      type: object
+      properties:
+        context:
+          title: Context
+          type: object
+          description: |
+            Receive contextual information. When Walrus deploys, Walrus will inject specific contextual information into this field.
+
+            Examples:
+            ```
+            context:
+              project:
+                name: string
+                id: string
+              environment:
+                name: string
+                id: string
+              resource:
+                name: string
+                id: string
+            ```
+          default: {}
+          nullable: true
+          additionalProperties:
+            type: object
+            x-walrus-ui:
+              colSpan: 12
+          x-walrus-ui:
+            colSpan: 12
+            group: Basic
+            hidden: true
+            order: 1
+      x-walrus-ui:
+        groupOrder:
+        - Basic

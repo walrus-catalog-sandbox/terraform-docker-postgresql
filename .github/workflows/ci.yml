@@ -1,0 +1,49 @@
+name: CI
+
+permissions:
+  contents: read
+  pull-requests: read
+  actions: read
+
+defaults:
+  run:
+    shell: bash
+
+on:
+  push:
+    branches:
+      - "main"
+      - "release/*"
+    tags:
+      - "v*.*.*"
+  pull_request:
+    branches:
+      - "main"
+      - "release/*"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    timeout-minutes: 60
+    runs-on: ubuntu-22.04
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+          with:
+            fetch-depth: 1
+            persist-credentials: false
+        - name: Setup Toolbox
+          timeout-minutes: 5
+          uses: actions/cache@v3
+          with:
+            # restore/save service binaries, e.g. terraform, terraform-docs, tflint and tfsec.
+            key: toolbox-${{ runner.os }}
+            path: |
+              ${{ github.workspace }}/.sbin
+              ~/.tflint.d
+              ~/.terraform.d
+        - name: Build
+          run: make ci
+          env:
+            LINT_DIRTY: "true"
+            WITH_COLOR: "false"
