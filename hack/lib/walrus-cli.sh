@@ -17,7 +17,7 @@ function seal::walrus_cli::install() {
   curl --retry 3 --retry-all-errors --retry-delay 3 \
     -o "${ROOT_DIR}/.sbin/walrus-cli" \
     -sSfL "https://walrus-cli-1303613262.cos.ap-guangzhou.myqcloud.com/releases/latest/walrus-cli-${os}-${arch}"
-  
+
   chmod a+x "${ROOT_DIR}/.sbin/walrus-cli"
 }
 
@@ -31,13 +31,12 @@ function seal::walrus_cli::validate() {
   if [[ -n "$(command -v $(seal::walrus_cli::bin))" ]]; then
     if [[ "${walrus_cli_version}" == "latest" ]]; then
       local expected_md5sum
-      expected_md5sum=$(curl --retry 3 --retry-all-errors --retry-delay 3 -IsSfL "https://walrus-cli-1303613262.cos.ap-guangzhou.myqcloud.com/releases/latest/walrus-cli-${os}-${arch}" | grep ETag | cut -d " " -f 2 | sed -e 's/"//g')
+      expected_md5sum="$(curl --retry 3 --retry-all-errors --retry-delay 3 -IsSfL "https://walrus-cli-1303613262.cos.ap-guangzhou.myqcloud.com/releases/latest/walrus-cli-${os}-${arch}" | grep ETag | cut -d" " -f 2 | sed -e 's/"//g' | sed -e 's/\r//g')"
       local actual_md5sum
-      actual_md5sum=$(md5sum "$(seal::walrus_cli::bin)" | cut -d " " -f 1)
+      actual_md5sum="$(md5sum $(which $(seal::walrus_cli::bin)) | cut -d" " -f 1)"
       if [[ "${expected_md5sum}" == "${actual_md5sum}" ]]; then
         return 0
       fi
-      return 0
     elif [[ $($(seal::walrus_cli::bin) --version 2>/dev/null | head -n 1 | cut -d " " -f 3 2>&1) == "${walrus_cli_version}" ]]; then
       return 0
     fi

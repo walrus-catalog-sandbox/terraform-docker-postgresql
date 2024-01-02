@@ -8,22 +8,6 @@ components:
       required:
       - infrastructure
       properties:
-        context:
-          title: Context
-          type: object
-          description: |
-            Receive contextual information. When Walrus deploys, Walrus will inject specific contextual information into this field.
-          default: {}
-          nullable: true
-          additionalProperties:
-            type: object
-            x-walrus-ui:
-              colSpan: 12
-          x-walrus-ui:
-            colSpan: 12
-            group: Basic
-            hidden: true
-            order: 1
         infrastructure:
           title: Infrastructure
           type: object
