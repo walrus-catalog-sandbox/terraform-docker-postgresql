@@ -52,8 +52,6 @@ No inputs.
 | <a name="output_connection_readonly"></a> [connection\_readonly](#output\_connection\_readonly) | n/a |
 | <a name="output_context"></a> [context](#output\_context) | n/a |
 | <a name="output_database"></a> [database](#output\_database) | n/a |
-| <a name="output_endpoints"></a> [endpoints](#output\_endpoints) | n/a |
-| <a name="output_endpoints_readonly"></a> [endpoints\_readonly](#output\_endpoints\_readonly) | n/a |
 | <a name="output_password"></a> [password](#output\_password) | n/a |
 | <a name="output_port"></a> [port](#output\_port) | n/a |
 | <a name="output_refer"></a> [refer](#output\_refer) | n/a |

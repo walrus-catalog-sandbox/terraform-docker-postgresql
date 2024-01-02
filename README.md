@@ -82,8 +82,6 @@ Please read our [contributing guide](./docs/CONTRIBUTING.md) if you're intereste
 | <a name="output_connection_readonly"></a> [connection\_readonly](#output\_connection\_readonly) | The readonly connection, a string combined host and port, might be a comma separated string or a single string. |
 | <a name="output_context"></a> [context](#output\_context) | The input context, a map, which is used for orchestration. |
 | <a name="output_database"></a> [database](#output\_database) | The name of PostgreSQL database to access. |
-| <a name="output_endpoints"></a> [endpoints](#output\_endpoints) | The endpoints, a list of string combined host and port. |
-| <a name="output_endpoints_readonly"></a> [endpoints\_readonly](#output\_endpoints\_readonly) | The readonly endpoints, a list of string combined host and port. |
 | <a name="output_password"></a> [password](#output\_password) | The password of the account to access the database. |
 | <a name="output_port"></a> [port](#output\_port) | The port of the PostgreSQL service. |
 | <a name="output_refer"></a> [refer](#output\_refer) | The refer, a map, including hosts, ports and account, which is used for dependencies or collaborations. |

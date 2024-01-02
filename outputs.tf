@@ -86,15 +86,3 @@ output "password" {
   description = "The password of the account to access the database."
   sensitive   = true
 }
-
-## UI display
-
-output "endpoints" {
-  description = "The endpoints, a list of string combined host and port."
-  value       = local.endpoints
-}
-
-output "endpoints_readonly" {
-  description = "The readonly endpoints, a list of string combined host and port."
-  value       = local.endpoints_readonly
-}
