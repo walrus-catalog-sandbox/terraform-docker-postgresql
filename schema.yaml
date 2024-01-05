@@ -26,6 +26,7 @@ components:
               x-walrus-ui:
                 order: 2
             network_id:
+              default: local-walrus
               description: |
                 Specify the ID of the Docker network where the service applies.
               title: Network Id
