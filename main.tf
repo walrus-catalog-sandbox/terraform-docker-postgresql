@@ -43,7 +43,7 @@ locals {
   volume_refer_database_data = {
     schema = "docker:localvolumeclaim"
     params = {
-      name = "postgresql"
+      name = format("%s-%s", local.namespace, local.resource_name)
     }
   }
 
