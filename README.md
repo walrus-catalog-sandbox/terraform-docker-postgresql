@@ -48,8 +48,8 @@ Please read our [contributing guide](./docs/CONTRIBUTING.md) if you're intereste
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_master"></a> [master](#module\_master) | github.com/walrus-catalog-sandbox/terraform-docker-containerservice | 69ae83a |
-| <a name="module_slave"></a> [slave](#module\_slave) | github.com/walrus-catalog-sandbox/terraform-docker-containerservice | 69ae83a |
+| <a name="module_master"></a> [master](#module\_master) | github.com/walrus-catalog/terraform-docker-containerservice | v0.1.0&depth=1 |
+| <a name="module_slave"></a> [slave](#module\_slave) | github.com/walrus-catalog/terraform-docker-containerservice | v0.1.0&depth=1 |
 
 ## Resources
 
