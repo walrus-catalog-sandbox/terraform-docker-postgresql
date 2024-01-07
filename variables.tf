@@ -35,12 +35,12 @@ Specify the infrastructure information for deploying.
 Examples:
 ```
 infrastructure:
-  network_id: string
+  network_id: string, optional
   domain_suffix: string, optional
 ```
 EOF
   type = object({
-    network_id    = string
+    network_id    = optional(string, "local-walrus")
     domain_suffix = optional(string, "cluster.local")
   })
 }

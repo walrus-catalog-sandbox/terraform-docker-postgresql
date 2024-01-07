@@ -115,6 +115,9 @@ components:
           type: object
           description: |
             Specify the computing resources.
+          default:
+            cpu: 0.25
+            memory: 1024
           nullable: true
           properties:
             cpu:
@@ -145,6 +148,7 @@ components:
           description: Specify the configuration to seed the database at first-time
             creating. Seeding increases the startup time waiting and also needs proper
             permission, like root account.
+          default: {}
           nullable: true
           properties:
             text:
