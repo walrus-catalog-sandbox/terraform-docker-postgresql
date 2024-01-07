@@ -8,6 +8,7 @@ locals {
 
   namespace     = join("-", [local.project_name, local.environment_name])
   domain_suffix = coalesce(var.infrastructure.domain_suffix, "cluster.local")
+  network_id    = coalesce(var.infrastructure.network_id, "local-walrus")
 
   labels = {
     "walrus.seal.io/catalog-name"     = "terraform-docker-postgresql"
@@ -29,7 +30,7 @@ locals {
 #
 
 data "docker_network" "network" {
-  name = var.infrastructure.network_id
+  name = local.network_id
 
   lifecycle {
     postcondition {
