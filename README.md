@@ -48,8 +48,8 @@ Please read our [contributing guide](./docs/CONTRIBUTING.md) if you're intereste
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_master"></a> [master](#module\_master) | github.com/walrus-catalog/terraform-docker-containerservice | v0.1.0&depth=1 |
-| <a name="module_slave"></a> [slave](#module\_slave) | github.com/walrus-catalog/terraform-docker-containerservice | v0.1.0&depth=1 |
+| <a name="module_master"></a> [master](#module\_master) | github.com/walrus-catalog/terraform-docker-containerservice | v0.2.1&depth=1 |
+| <a name="module_slave"></a> [slave](#module\_slave) | github.com/walrus-catalog/terraform-docker-containerservice | v0.2.1&depth=1 |
 
 ## Resources
 
@@ -65,7 +65,7 @@ Please read our [contributing guide](./docs/CONTRIBUTING.md) if you're intereste
 | <a name="input_context"></a> [context](#input\_context) | Receive contextual information. When Walrus deploys, Walrus will inject specific contextual information into this field.<br><br>Examples:<pre>context:<br>  project:<br>    name: string<br>    id: string<br>  environment:<br>    name: string<br>    id: string<br>  resource:<br>    name: string<br>    id: string</pre> | `map(any)` | `{}` | no |
 | <a name="input_database"></a> [database](#input\_database) | Specify the database name. The database name must be 2-64 characters long and start with any lower letter, combined with number, or symbols: - \_.<br>The database name cannot be PostgreSQL forbidden keyword. | `string` | `"mydb"` | no |
 | <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | Specify the deployment engine version, select from https://hub.docker.com/r/bitnami/postgresql/tags. | `string` | `"16"` | no |
-| <a name="input_infrastructure"></a> [infrastructure](#input\_infrastructure) | Specify the infrastructure information for deploying.<br><br>Examples:<pre>infrastructure:<br>  network_id: string, optional<br>  domain_suffix: string, optional</pre> | <pre>object({<br>    network_id    = optional(string, "local-walrus")<br>    domain_suffix = optional(string, "cluster.local")<br>  })</pre> | n/a | yes |
+| <a name="input_infrastructure"></a> [infrastructure](#input\_infrastructure) | Specify the infrastructure information for deploying.<br><br>Examples:<pre>infrastructure:<br>  network_id: string, optional<br>  domain_suffix: string, optional</pre> | <pre>object({<br>    network_id    = optional(string, "local-walrus")<br>    domain_suffix = optional(string, "cluster.local")<br>  })</pre> | <pre>{<br>  "domain_suffix": "cluster.local",<br>  "network_id": "local-walrus"<br>}</pre> | no |
 | <a name="input_password"></a> [password](#input\_password) | Specify the account password. The password must be 8-32 characters long and start with any letter, number, or symbols: ! # $ % ^ & * ( ) \_ + - =.<br>If not specified, it will use the first 16 characters of the username md5 hash value. | `string` | `null` | no |
 | <a name="input_replication_readonly_replicas"></a> [replication\_readonly\_replicas](#input\_replication\_readonly\_replicas) | Specify the number of read-only replicas under the replication deployment. | `number` | `1` | no |
 | <a name="input_resources"></a> [resources](#input\_resources) | Specify the computing resources.<br><br>Examples:<pre>resources:<br>  cpu: number, optional<br>  memory: number, optional       # in megabyte</pre> | <pre>object({<br>    cpu    = optional(number, 0.25)<br>    memory = optional(number, 1024)<br>  })</pre> | <pre>{<br>  "cpu": 0.25,<br>  "memory": 1024<br>}</pre> | no |
