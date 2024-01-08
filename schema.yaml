@@ -13,6 +13,9 @@ components:
           type: object
           description: |
             Specify the infrastructure information for deploying.
+          default:
+            domain_suffix: cluster.local
+            network_id: local-walrus
           required:
           - network_id
           properties:
@@ -35,7 +38,7 @@ components:
                 order: 1
           x-walrus-ui:
             colSpan: 12
-            group: Basic
+            group: Advanced
             order: 2
         architecture:
           title: Architecture
@@ -207,7 +210,8 @@ components:
           x-walrus-ui:
             colSpan: 12
             group: Basic
-            order: 8
+            order: 10
       x-walrus-ui:
         groupOrder:
         - Basic
+        - Advanced

@@ -54,7 +54,7 @@ locals {
 }
 
 module "master" {
-  source = "github.com/walrus-catalog/terraform-docker-containerservice?ref=v0.1.0&depth=1"
+  source = "github.com/walrus-catalog/terraform-docker-containerservice?ref=v0.2.1&depth=1"
 
   context = {
     project = {
@@ -160,7 +160,7 @@ module "master" {
 module "slave" {
   count = local.architecture == "replication" ? var.replication_readonly_replicas : 0
 
-  source = "github.com/walrus-catalog/terraform-docker-containerservice?ref=v0.1.0&depth=1"
+  source = "github.com/walrus-catalog/terraform-docker-containerservice?ref=v0.2.1&depth=1"
 
   context = {
     project = {
