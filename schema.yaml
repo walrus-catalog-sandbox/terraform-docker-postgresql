@@ -164,6 +164,7 @@ components:
                   type: string
                   x-walrus-ui:
                     order: 1
+                    widget: TextArea
               required:
               - content
               title: Text
@@ -197,6 +198,35 @@ components:
                   type: string
                   x-walrus-ui:
                     order: 1
+                storage:
+                  description: |
+                    Specify a storage to store the downloaded SQL statements.
+                  nullable: true
+                  properties:
+                    class:
+                      description: |
+                        Specify the storage class. If not specified, it will use the default provisioner.
+                      nullable: true
+                      title: Class
+                      type: string
+                      x-walrus-ui:
+                        order: 1
+                    size:
+                      default: 10240
+                      description: |
+                        Specify the storage size. Unit is megabyte.
+                      minimum: 1024
+                      nullable: true
+                      title: Size(MiB)
+                      type: number
+                      x-walrus-ui:
+                        order: 2
+                  title: Storage
+                  type: object
+                  x-walrus-ui:
+                    colSpan: 12
+                    hidden: true
+                    order: 2
               required:
               - location
               title: Url
@@ -212,4 +242,3 @@ components:
       x-walrus-ui:
         groupOrder:
         - Basic
-        - Advanced
