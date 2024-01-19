@@ -51,6 +51,8 @@ locals {
   database = coalesce(var.database, "mydb")
   username = coalesce(var.username, "rdsuser")
   password = coalesce(var.password, substr(md5(local.username), 0, 16))
+
+  tag = coalesce(try(length(split(".", var.engine_version)) != 2 ? var.engine_version : format("%s.0", var.engine_version), null), "15")
 }
 
 module "master" {
@@ -103,7 +105,7 @@ module "master" {
     # Run Container
     #
     {
-      image     = join(":", ["bitnami/postgresql", var.engine_version])
+      image     = join(":", ["bitnami/postgresql", local.tag])
       resources = var.resources
       envs = [
         {
@@ -186,7 +188,7 @@ module "slave" {
     # Run Container
     #
     {
-      image     = join(":", ["bitnami/postgresql", var.engine_version])
+      image     = join(":", ["bitnami/postgresql", local.tag])
       resources = var.resources
       envs = [
         {

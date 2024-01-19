@@ -82,7 +82,7 @@ variable "engine_version" {
 Specify the deployment engine version, select from https://hub.docker.com/r/bitnami/postgresql/tags.
 EOF
   type        = string
-  default     = "16"
+  default     = "15.0"
 }
 
 variable "database" {
