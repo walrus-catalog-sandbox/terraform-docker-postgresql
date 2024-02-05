@@ -52,7 +52,7 @@ locals {
   username = coalesce(var.username, "rdsuser")
   password = coalesce(var.password, substr(md5(local.username), 0, 16))
 
-  tag = coalesce(try(length(split(".", var.engine_version)) != 2 ? var.engine_version : format("%s.0", var.engine_version), null), "15")
+  tag = coalesce(try(length(split(".", var.engine_version)) != 2 ? var.engine_version : format("%s.0", var.engine_version), null), "16")
 }
 
 module "master" {
