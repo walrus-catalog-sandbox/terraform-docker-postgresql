@@ -68,7 +68,7 @@ components:
           type: string
           description: |
             Specify the deployment engine version, select from https://hub.docker.com/r/bitnami/postgresql/tags.
-          default: "16"
+          default: "16.0"
           x-walrus-ui:
             group: Basic
             order: 5
